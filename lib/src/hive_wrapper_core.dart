@@ -1,4 +1,6 @@
 import 'package:hive/hive.dart';
+
+import 'hive_filed.dart';
 export 'util.dart';
 
 abstract class BoxWrapper<Type> {
@@ -9,12 +11,23 @@ abstract class BoxWrapper<Type> {
   // access to box
   Box<Type> get box => Hive.box<Type>(boxName);
 
+  List<ValueField> fields = [];
+
   Future<void> load() async {
     final box = await Hive.openBox<Type>(boxName);
-    await initBox(box);
+
+    fields.forEach((element) => element.create(box));
+    // await initBox(box);
   }
 
-  Future<void> initBox(Box<Type> box);
+  // @override
+  // Future<void> initBox(Box box) async {
+  //   for (final field in fields) {
+  //     field.create(box);
+  //   }
+  // }
+
+  // Future<void> initBox(Box<Type> box);
 
   Future<int> clear() => box.clear();
 
