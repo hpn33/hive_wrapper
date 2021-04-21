@@ -1,9 +1,10 @@
-import 'package:hive_wrapper/hive_wrapper.dart';
+// import 'package:hive_wrapper/hive_wrapper.dart';
 
+import '../../lib/hive_wrapper.dart';
 import '../migrate/game_state_2021_04_21_01.dart';
 import 'game_state.g.dart';
 
-@BoxWrapper(
+@wrapper(
   boxName = 'game_state',
   // fields: [
   //   IntField('level_score', 1),

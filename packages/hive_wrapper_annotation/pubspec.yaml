@@ -1,0 +1,10 @@
+name: hive_wrapper_annotation
+description: Annotations for hive_wrapper_generator used to generate classes 
+author: hamed pishdad 
+version: 0.1.0
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dev_dependencies:
+  pedantic: ^1.9.2

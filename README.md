@@ -1,7 +1,1 @@
-Hive Wrapper
-
-A Wrapper & Util for Hive
-
-
-## TODO
-* [ ] 
+packages/hive_wrapper/README.md
