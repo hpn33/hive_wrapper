@@ -4,13 +4,13 @@ import 'package:hive_wrapper/src/hive_filed.dart';
 class $BoxGameState extends BoxWrapper {
   $BoxGameState() : super('game_state');
 
-  @override
-  List<ValueField> fields = [
-    IntField('level_score', 1),
-    IntField('top_level_score', 1),
-    IntField('time', 1000),
-    IntField('top_score', 1),
-  ];
+  // @override
+  // List<ValueField> fields = [
+  //   IntField('level_score', 1),
+  //   IntField('top_level_score', 1),
+  //   IntField('time', 1000),
+  //   IntField('top_score', 1),
+  // ];
 
   // time
   int get time => box.get('time') as int;

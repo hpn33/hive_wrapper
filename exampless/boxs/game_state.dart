@@ -1,14 +1,19 @@
 import 'package:hive_wrapper/hive_wrapper.dart';
 
+import '../migrate/game_state_2021_04_21_01.dart';
 import 'game_state.g.dart';
 
 @BoxWrapper(
   boxName = 'game_state',
-  fields: [
-    IntField('level_score', 1),
-    IntField('top_level_score', 1),
-    IntField('time', 1000),
-    IntField('top_score', 1),
+  // fields: [
+  //   IntField('level_score', 1),
+  //   IntField('top_level_score', 1),
+  //   IntField('time', 1000),
+  //   IntField('top_score', 1),
+  // ],
+
+  migrate: [
+    InitGameState(),
   ],
 )
 class BoxGameState extends $BoxGameState {

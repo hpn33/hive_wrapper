@@ -1,6 +1,8 @@
 import 'package:hive/hive.dart';
 
-import 'hive_filed.dart';
+import 'hive_migration.dart';
+
+// import 'hive_filed.dart';
 export 'util.dart';
 
 abstract class BoxWrapper<Type> {
@@ -11,13 +13,17 @@ abstract class BoxWrapper<Type> {
   // access to box
   Box<Type> get box => Hive.box<Type>(boxName);
 
-  List<ValueField> fields = [];
+  // List<ValueField> fields = [];
+
+  List<HiveMigration> migrations = [];
 
   Future<void> load() async {
     final box = await Hive.openBox<Type>(boxName);
 
-    fields.forEach((element) => element.create(box));
+    // fields.forEach((element) => element.create(box));
     // await initBox(box);
+
+    migrations.forEach((element) => element.migrate(box));
   }
 
   // @override
