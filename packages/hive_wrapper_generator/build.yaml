@@ -1,0 +1,21 @@
+targets:
+  $default:
+    builders:
+      hive_wrapper_generator:
+        enabled: true
+        generate_for:
+          exclude:
+            - test
+            - example
+          include:
+            - test/integration/*
+            - test/integration/**/*
+
+builders:
+  hive_wrapper_generator:
+    import: "package:hive_wrapper_generator/builder.dart"
+    builder_factories: ["hive_wrapper_generator"]
+    build_extensions: { ".dart": [".hw.dart"] }
+    auto_apply: dependents
+    build_to: source
+    runs_before: ["json_serializable|json_serializable"]

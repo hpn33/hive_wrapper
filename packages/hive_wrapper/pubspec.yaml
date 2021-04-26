@@ -15,11 +15,11 @@ dependencies:
  hive: ^2.0.3
  hive_flutter: ^1.0.0
 
- hive_wrapper_annotation: ^0.1.0
+#  hive_wrapper_annotation: ^0.1.0
 
-dependency_overrides:
-  hive_wrapper_annotation:
-    path: ../hive_wrapper_annotation
+# dependency_overrides:
+#   hive_wrapper_annotation:
+#     path: ../hive_wrapper_annotation
 
 dev_dependencies:
   flutter_test:

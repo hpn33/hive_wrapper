@@ -1,0 +1,28 @@
+name: example
+description: A new Flutter project.
+
+environment:
+  sdk: ">=2.12.0-0.0.dev <3.0.0"
+  flutter: "2.0.4"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  hive_wrapper:
+  hive_wrapper_annotation:  
+
+dev_dependencies:
+
+  build_runner:
+  hive_wrapper_generator: 
+
+
+dependency_overrides:
+  hive_wrapper_annotation:
+    path: ../hive_wrapper_annotation
+  
+  hive_wrapper:
+    path: ../hive_wrapper
+  
+  hive_wrapper_generator:
+    path: ../hive_wrapper_generator
