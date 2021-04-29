@@ -17,7 +17,11 @@ class BoxWrapperAn {
 }
 
 class HiveWrapperAn {
-  const HiveWrapperAn({this.boxs = const []});
+  const HiveWrapperAn({
+    this.boxs = const [],
+    this.adaptors = const [],
+  });
 
   final List<Type> boxs;
+  final List<Type> adaptors;
 }

@@ -1,21 +1,34 @@
 targets:
   $default:
     builders:
-      hive_wrapper_generator:
+      hive_wrapper_generator|hiveWrapperAn:
         enabled: true
-        generate_for:
-          exclude:
-            - test
-            - example
-          include:
-            - test/integration/*
-            - test/integration/**/*
+        # generate_for:
+        #   - lib/*.dart
+        # generate_for:
+        #   exclude:
+        #     - test
+        #     - example
+        #   include:
+        #     - test/integration/*
+        #     - test/integration/**/*
+      # hive_wrapper_generator|boxWrapperAn:
+      #   enabled: true
 
 builders:
-  hive_wrapper_generator:
+  
+  # boxWrapperAn:
+  #   import: "package:hive_wrapper_generator/builder.dart"
+  #   builder_factories: ["boxWrapperAn"]
+  #   build_extensions: { ".dart": [".hw.dart"] }
+  #   auto_apply: dependents
+  #   build_to: source
+  
+  hiveWrapperAn:
     import: "package:hive_wrapper_generator/builder.dart"
-    builder_factories: ["hive_wrapper_generator"]
+    builder_factories: ["hiveWrapperAn"]
     build_extensions: { ".dart": [".hw.dart"] }
     auto_apply: dependents
     build_to: source
-    runs_before: ["json_serializable|json_serializable"]
+  
+

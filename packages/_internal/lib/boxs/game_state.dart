@@ -2,7 +2,7 @@ import 'package:hive_wrapper/hive_wrapper.dart';
 import 'package:hive_wrapper_annotation/hive_filed.dart';
 import 'package:hive_wrapper_annotation/hive_wrapper_annotation.dart';
 
-part 'game_state.g.dart';
+part 'game_state.hw.dart';
 
 @BoxWrapperAn(
   boxName: 'game_state',
