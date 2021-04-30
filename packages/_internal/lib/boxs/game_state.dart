@@ -7,10 +7,10 @@ part 'game_state.hw.dart';
 @BoxWrapperAn(
   boxName: 'game_state',
   fields: [
-    ValueField<int>('level_score', 1),
-    ValueField<int>('top_level_score', 1),
+    ValueField<int>('levelScore', 1),
+    ValueField<int>('topLevelScore', 1),
     ValueField<int>('time', 1000),
-    ValueField<int>('top_score', 1),
+    ValueField<int>('topScore', 1),
   ],
 
   // migrate: [

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:analyzer/dart/constant/value.dart';
 import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/type.dart';
 import 'package:analyzer/dart/element/visitor.dart';
@@ -23,12 +24,41 @@ class BoxWrapperGenerator extends GeneratorForAnnotation<BoxWrapperAn> {
     }
 
     final className = '\$${model.className}';
+
+    final fields = _getFields(annotation);
+
     final buffer = StringBuffer();
 
     buffer.writeln('class $className extends BoxWrapper$classType {');
 
     // construct
-    buffer.writeln('$className() : super(\'$boxName\')');
+    buffer.writeln('$className() : super(\'$boxName\');');
+    buffer.writeln();
+
+    // fields
+    if (fields.isNotEmpty) {
+      buffer.writeln('List<ValueField> fields = [');
+      for (final field in fields) {
+        final key = field[0];
+        final def = field[1];
+        final type = field[2];
+
+        buffer.writeln('ValueField<$type>(\'$key\', $def),');
+      }
+      buffer.writeln('];');
+      buffer.writeln();
+    }
+
+    // getters setters
+    for (final a in fields) {
+      final key = a[0];
+      final type = a[2];
+
+      buffer.writeln('  // $key');
+      buffer.writeln('$type get $key => box.get(\'$key\') as $type;');
+      buffer.writeln('set $key($type value) => box.put(\'$key\', value);');
+      buffer.writeln();
+    }
 
     // end class
     buffer.writeln('}');
@@ -37,24 +67,15 @@ class BoxWrapperGenerator extends GeneratorForAnnotation<BoxWrapperAn> {
   }
 
   Iterable<List<String>> _getFields(ConstantReader annotation) sync* {
-    final boxTypes = annotation.read('boxs').objectValue.toListValue()!;
+    final filedsType = annotation.read('fields').objectValue.toListValue()!;
 
-    for (final box in boxTypes) {
-      final type = box.toTypeValue().toString().replaceAll('*', '');
+    for (final fieldType in filedsType) {
+      final key = fieldType.getField('key')!.toStringValue()!;
+      final defTemp = fieldType.getField('def')!;
+      final def = defTemp;
+      final type = def.type.toString();
 
-      final name =
-          type.substring(3, 4).toLowerCase() + type.substring(4, type.length);
-
-      yield [type, name];
-    }
-  }
-
-  Iterable<String> _getAdaptors(ConstantReader annotation) sync* {
-    final adaptorTypes = annotation.read('adaptors').objectValue.toListValue()!;
-
-    for (final adaptor in adaptorTypes) {
-      // type
-      yield adaptor.toTypeValue().toString().replaceAll('*', '');
+      yield [key, def.toString(), type];
     }
   }
 }

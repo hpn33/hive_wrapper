@@ -26,7 +26,7 @@ class HiveWrapperGenerator extends GeneratorForAnnotation<HiveWrapperAn> {
       final type = field[0];
       final name = field[1];
 
-      buffer.writeln('$type $name = $type();');
+      buffer.writeln('final $name = $type();');
     }
     buffer.writeln();
 

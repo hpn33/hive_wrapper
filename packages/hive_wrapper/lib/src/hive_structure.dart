@@ -1,5 +1,5 @@
-import 'hive_filed.dart';
+// import 'hive_filed.dart';
 
-class HiveBoxStructure {
-  List<ValueField> fields = [];
-}
+// class HiveBoxStructure {
+//   List<ValueField> fields = [];
+// }

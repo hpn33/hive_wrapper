@@ -12,7 +12,7 @@ final hiveW = HiveWrapper();
 
 @HiveWrapperAn(
   boxs: [BoxGameState, BoxScores],
-  adaptors: [ScoreAdapter],
+  // adaptors: [ScoreAdapter],
 )
 class HiveWrapper extends $HiveWrapper {
   void saveScore(int score) {

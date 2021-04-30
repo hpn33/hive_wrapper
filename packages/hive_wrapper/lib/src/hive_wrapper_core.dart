@@ -12,7 +12,7 @@ abstract class BoxWrapper<Type> {
   // access to box
   Box<Type> get box => Hive.box<Type>(boxName);
 
-  List<ValueField> fields = [];
+  List<ValueField<Object>> fields = [];
 
   // List<HiveMigration> migrations = [];
 
@@ -20,16 +20,16 @@ abstract class BoxWrapper<Type> {
     final box = await Hive.openBox<Type>(boxName);
 
     fields.forEach((element) => element.create(box));
-    await initBox(box);
+    // await initBox(box);
 
     // migrations.forEach((element) => element.migrate(box));
   }
 
-  Future<void> initBox(Box box) async {
-    for (final field in fields) {
-      field.create(box);
-    }
-  }
+  // Future<void> initBox(Box box) async {
+  //   for (final field in fields) {
+  //     field.create(box);
+  //   }
+  // }
 
   // Future<void> initBox(Box<Type> box);
 

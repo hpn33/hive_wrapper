@@ -5,7 +5,7 @@ extension Hi on Box {
     if (!containsKey(key)) await put(key, def);
   }
 
-Future<void> replace(String oldName, String newName) async {
+  Future<void> replace(String oldName, String newName) async {
     if (containsKey(oldName)) {
       await create(newName, await get(oldName));
       await delete(oldName);

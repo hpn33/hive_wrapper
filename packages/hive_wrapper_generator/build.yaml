@@ -1,8 +1,8 @@
-targets:
-  $default:
-    builders:
-      hive_wrapper_generator|hiveWrapperAn:
-        enabled: true
+# targets:
+#   $default:
+#     builders:
+#       hive_wrapper_generator|hiveWrapperAn:
+#         enabled: true
         # generate_for:
         #   - lib/*.dart
         # generate_for:
@@ -16,19 +16,23 @@ targets:
       #   enabled: true
 
 builders:
-  
-  # boxWrapperAn:
-  #   import: "package:hive_wrapper_generator/builder.dart"
-  #   builder_factories: ["boxWrapperAn"]
-  #   build_extensions: { ".dart": [".hw.dart"] }
-  #   auto_apply: dependents
-  #   build_to: source
-  
+
   hiveWrapperAn:
     import: "package:hive_wrapper_generator/builder.dart"
     builder_factories: ["hiveWrapperAn"]
     build_extensions: { ".dart": [".hw.dart"] }
     auto_apply: dependents
     build_to: source
+  
+  # boxWrapperAn:
+  #   import: "package:hive_wrapper_generator/builder.dart"
+  #   builder_factories: ["boxWrapperAn"]
+  #   build_extensions: { ".dart": [".g.dart"] }
+  #   auto_apply: dependents
+  #   build_to: source
+    # applies_builders: ["source_gen|combining_builder"]
+  
+  
+
   
 
