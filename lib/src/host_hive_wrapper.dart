@@ -4,7 +4,9 @@ import 'hive_object_wrapper.dart';
 abstract class HostHiveWrapper {
   late Map<String, BoxWrapper> boxs;
 
-  BoxWrapper<BoxType> getBox<BoxType>(String boxName);
+  BoxWrapper<BoxType> getBox<BoxType>(String boxName) {
+    return boxs[boxName] as BoxWrapper<BoxType>;
+  }
 
   Iterable<ReturnType> belongsTo<ReturnType extends HiveObjectWrapper>(
     int localKey,
