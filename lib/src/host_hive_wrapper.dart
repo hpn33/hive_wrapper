@@ -69,11 +69,11 @@ extension AA<R> on Iterable<R> {
     }
 
     // get items
-    final uniqeList = <T>[];
+    final finalList = <T>[];
 
-    targetBox.where((element) {
+    for (final element in targetBox.all) {
       if (keyJoinList.isEmpty) {
-        return false;
+        continue;
       }
 
       for (final i in keyJoinList) {
@@ -84,17 +84,15 @@ extension AA<R> on Iterable<R> {
         keyJoinList.remove(i);
 
         if (!uniqe) {
-          return true;
+          finalList.add(element);
         }
 
-        if (uniqeList.where((e) => e.key == element.key).isEmpty) {
-          return true;
+        if (finalList.where((e) => e.key == element.key).isEmpty) {
+          finalList.add(element);
         }
       }
+    }
 
-      return false;
-    });
-
-    return uniqeList;
+    return finalList;
   }
 }
