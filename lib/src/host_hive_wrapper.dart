@@ -75,27 +75,27 @@ extension AA<R> on Iterable<R> {
       return finalList;
     }
 
-    for (final element in targetBox.all) {
-      if (keyJoinList.isEmpty) {
-        break;
+    // get match item
+    final matchItem = keyJoinList.map((element) {
+      for (final e in targetBox.all) {
+        if (e.key == element) {
+          return e;
+        }
       }
 
-      for (final i in keyJoinList) {
-        if (element.key != i) {
-          continue;
-        }
+      return null;
+    }).where((element) => element != null);
 
-        keyJoinList.remove(i);
+    // finalize items
+    for (final element in matchItem) {
+      if (!uniqe) {
+        finalList.add(element!);
+        continue;
+      }
 
-        if (!uniqe) {
-          finalList.add(element);
-          break;
-        }
-
-        if (finalList.where((e) => e.key == element.key).isEmpty) {
-          finalList.add(element);
-          break;
-        }
+      if (finalList.where((e) => e.key == element!.key).isEmpty) {
+        finalList.add(element!);
+        continue;
       }
     }
 
