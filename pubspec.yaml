@@ -1,6 +1,6 @@
 name: hive_wrapper
 description: A Wrapper and util for hive.
-version: 0.2.4
+version: 0.2.5-test
 # homepage: https://www.example.com
 
 environment:

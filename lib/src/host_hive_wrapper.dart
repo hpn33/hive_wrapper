@@ -7,46 +7,6 @@ abstract class HostHiveWrapper {
   BoxWrapper<BoxType> getBox<BoxType>(String boxName) {
     return boxs[boxName] as BoxWrapper<BoxType>;
   }
-
-  Iterable<ReturnType> belongsTo<ReturnType extends HiveObjectWrapper>(
-    int localKey,
-    BoxWrapper<ReturnType> targetBox,
-    String targetField,
-  ) {
-    return targetBox.where((element) {
-      final field = element.getField(targetField);
-
-      return field == localKey;
-    });
-  }
-
-  Iterable<ReturnType> hasMany<ReturnType extends HiveObjectWrapper>(
-    BoxWrapper<ReturnType> targetBox,
-    int? localKey,
-  ) {
-    if (localKey == null) {
-      return [];
-    }
-
-    return targetBox.where((element) => element.key == localKey);
-  }
-
-  ReturnType? hasOne<ReturnType extends HiveObjectWrapper>(
-    BoxWrapper<ReturnType> targetBox,
-    int? localKey,
-  ) {
-    if (localKey == null) {
-      return null;
-    }
-
-    final selected = targetBox.where((element) => element.key == localKey);
-
-    if (selected.isEmpty) {
-      return null;
-    }
-
-    return selected.first;
-  }
 }
 
 extension AA<R> on Iterable<R> {
