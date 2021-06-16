@@ -3,6 +3,15 @@ Hive Wrapper
 A Wrapper & Util for Hive
 
 
+## Fundations
+
+* Box
+* Box Static Properties
+* Box Type Properties
+* Box migration
+
+
+
 ## How use
 on pubspec.yaml add this
 ```
