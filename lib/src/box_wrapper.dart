@@ -4,6 +4,7 @@ typedef BoxMigrationFunc<Type> = Future<void> Function(Box<Type>, int?);
 
 abstract class BoxWrapper<Type> {
   final String boxName;
+  // use a different box for saving version
   final int _buildVersion;
   final String versionName = '__version__';
 
