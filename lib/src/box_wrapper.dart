@@ -4,7 +4,7 @@ typedef BoxMigrationFunc<Type> = Future<void> Function(Box<Type>, int?);
 
 abstract class BoxWrapper<Type> {
   final String boxName;
-  // use a different box for saving version
+  // TODO: use a different box for saving version
   final int _buildVersion;
   final String versionName = '__version__';
 
@@ -16,6 +16,10 @@ abstract class BoxWrapper<Type> {
   Box<Type> get box => Hive.box<Type>(boxName);
 
   Future<void> load() async {
+    final box = await Hive.openBox<Type>(boxName);
+
+    return;
+
     // version check
     int? existVersion;
 
