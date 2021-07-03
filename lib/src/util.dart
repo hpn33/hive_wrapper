@@ -28,41 +28,42 @@ extension AA<R> on Iterable<R> {
     for (final item in this) {
       final k = getKey(item);
 
-      if (k == null) {
-        continue;
+      if (k != null) {
+        keyJoinList.add(k);
       }
-
-      keyJoinList.add(k);
     }
 
-    // get items
-    final finalList = <T>[];
-
+    // if no keys exists
     if (keyJoinList.isEmpty) {
-      return finalList;
+      return [];
     }
 
     // get match item
-    final matchItem = keyJoinList.map((element) {
-      for (final e in targetBox.all) {
-        if (e.key == element) {
-          return e;
-        }
-      }
+    final matchList = <T>[];
+    final _targetBox = targetBox.all.cast<T?>();
 
-      return null;
-    }).where((element) => element != null);
+    for (final keyJoinItem in keyJoinList) {
+      final target = _targetBox.firstWhere(
+        (targetItem) => targetItem!.key == keyJoinItem,
+        orElse: () => null,
+      );
+
+      if (target != null) {
+        matchList.add(target);
+      }
+    }
+
+    // if uniqe was false
+    if (!uniqe) {
+      return matchList;
+    }
 
     // finalize items
-    for (final element in matchItem) {
-      if (!uniqe) {
-        finalList.add(element!);
-        continue;
-      }
+    final finalList = <T>[];
 
-      if (finalList.where((e) => e.key == element!.key).isEmpty) {
-        finalList.add(element!);
-        continue;
+    for (final element in matchList) {
+      if (!finalList.any((e) => e.key == element.key)) {
+        finalList.add(element);
       }
     }
 
